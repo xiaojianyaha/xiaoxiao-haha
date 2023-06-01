@@ -1,0 +1,24 @@
+  <div class="goods-sku">
+    <dl v-for="item in goods.specs" :key="item.id">
+      <dt>{{ item.name }}</dt>
+      <dd>
+        <template v-for="val in item.values" :key="val.name">
+          <!-- 图片类型规格 -->
+          <img
+            v-if="val.picture"
+            :src="val.picture"
+            :title="val.name"
+            :class="{ selected: val.selected, disabled: val.disabled }"
+            @click="changeSku(item, val)"
+          />
+          <!-- 文字类型规格 -->
+          <span
+            v-else
+            @click="changeSku(item, val)"
+            :class="{ selected: val.selected, disabled: val.disabled }"
+            >{{ val.name }}</span
+          >
+        </template>
+      </dd>
+    </dl>
+  </div>
